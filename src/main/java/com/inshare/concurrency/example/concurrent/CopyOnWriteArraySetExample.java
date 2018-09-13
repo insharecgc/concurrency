@@ -1,16 +1,10 @@
-package com.inshare.concurrency.example.commonUnsafe;
+package com.inshare.concurrency.example.concurrent;
 
-import com.inshare.concurrency.annoation.Recommend;
 import com.inshare.concurrency.annoation.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
+import java.util.Set;
+import java.util.concurrent.*;
 
 /**
  * @author Guichao
@@ -18,8 +12,7 @@ import java.util.concurrent.Semaphore;
  */
 @Slf4j
 @ThreadSafe
-@Recommend
-public class DateFormatExample3 {
+public class CopyOnWriteArraySetExample {
 
     // 请求总数
     public static int clientTotal = 5000;
@@ -27,7 +20,7 @@ public class DateFormatExample3 {
     // 同时并发执行的线程数
     public static int threadTotal = 200;
 
-    private static DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyyMMdd");
+    public static Set<Integer> set = new CopyOnWriteArraySet<>();
 
     public static void main(String[] arg) throws Exception{
         ExecutorService executorService = Executors.newCachedThreadPool();
@@ -48,9 +41,10 @@ public class DateFormatExample3 {
         }
         countDownLatch.await();
         executorService.shutdown();
+        log.info("size:{}", set.size());
     }
 
     private static void update(int i) {
-        log.info("{},{}", i, DateTime.parse("20180912", dateTimeFormatter).toDate());
+        set.add(i);
     }
 }
