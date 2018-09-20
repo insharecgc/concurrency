@@ -59,6 +59,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.49</version>
+		</dependency>
+
+
 		<!--ImmutableXXX类，表示对象不可修改-->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -71,6 +79,18 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.10</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>2.1.10.RELEASE</version>
+		</dependency>
+
+		<!--rabbitmq-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
     </dependencies>
 
